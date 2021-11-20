@@ -1,0 +1,81 @@
+nav .navbar-brand {
+    /* size for brand */
+    font-size: xx-large;
+    display: flex;
+}
+
+nav {
+    /* menu */
+    font-weight: 500;
+    font-size: large;
+}
+
+.nav-link, a {
+    /* links */
+    text-decoration: none;
+    color: #AC090A;
+}
+
+.nav-link:hover {
+    /* hover on menu */
+    color: #7d9999;
+}
+
+nav .active {
+    color: #7d9999;
+}
+
+/* Colors for brand */
+nav .green, .navbar-light .navbar-brand, footer .green {
+    color: #7d9999;
+}
+
+.brand {
+    /* brand on header */
+    margin-left: 10px;
+}
+
+.nav-item {
+    /* border for menus */
+    border-right: solid grey;
+
+}
+
+.nav-item:last-child {
+    /* no right border for last menu */
+    border-right: 0;
+}
+
+body {
+    /* font family for all */
+    font-size: 100%;
+    font-family: 'Karla', sans-serif;
+    font-weight: 400;
+}
+
+main .form-control {
+    /* Center form controls */
+    display: inline-block;
+
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main {
+    /* Scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* Center contents */
+    text-align: center;
+}
+
+main img {
+    /* Constrain images on small screens */
+    max-width: 100%;
+}
+
+footer {
+    /* footer */
+    font-size: 90%;
+}
+
