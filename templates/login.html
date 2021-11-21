@@ -1,9 +1,37 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    View Log
+    Log In
+{% endblock %}
+
+{% block image %}
+    <img src="/static/images/dance.jpg" alt="image-dance" class="img-fluid mx-auto d-block" width="50%">
 {% endblock %}
 
 {% block main %}
-    <h1>Under construction</h1>
+    <form action="/login" method="post">
+        <h1 class="green">Log In</h1>
+        <p>Please sign in and enjoy addi's workout log.</p>
+        
+        <hr> 
+
+        <div class="mb-3 row justify-content-md-center">
+            <label for="username" class="col-sm-3 col-form-label">Username</label>
+            <div class="col-sm-4">
+                <input class="form-control" name="username" placeholder="Username" type="text" autocomplete="off">
+            </div>
+        </div>
+        <div class="mb-3 row justify-content-md-center">
+            <label for="password" class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-4">
+                <input class="form-control" name="password" placeholder="Password" type="password" autocomplete="off">
+            </div>     
+        </div>
+
+        <div class="mb-3 row">
+            <div class="d-grid gap-2 col-4 mx-auto">
+                <button class="btn btn-primary" type="submit">Log In</button>
+            </div>
+        </div>
+    </form>
 {% endblock %}

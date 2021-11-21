@@ -1,23 +1,23 @@
 nav .navbar-brand {
-    /* size for brand */
+    /* Size for brand */
     font-size: xx-large;
     display: flex;
 }
 
 nav {
-    /* menu */
+    /* Menu */
     font-weight: 500;
     font-size: large;
 }
 
 .nav-link, a {
-    /* links */
+    /* Links */
     text-decoration: none;
     color: #AC090A;
 }
 
 .nav-link:hover {
-    /* hover on menu */
+    /* Hover on menu */
     color: #7d9999;
 }
 
@@ -26,47 +26,36 @@ nav .active {
 }
 
 /* Colors for brand */
-nav .green, .navbar-light .navbar-brand, footer .green {
+nav .green, .navbar-light .navbar-brand, .green {
     color: #7d9999;
 }
 
 .brand {
-    /* brand on header */
+    /* Brand on header */
     margin-left: 10px;
 }
 
 .nav-item {
-    /* border for menus */
+    /* Border for menus */
     border-right: solid grey;
 
 }
 
 .nav-item:last-child {
-    /* no right border for last menu */
+    /* No right border for last menu */
     border-right: 0;
 }
 
 body {
-    /* font family for all */
+    /* Font family for all */
     font-size: 100%;
     font-family: 'Karla', sans-serif;
     font-weight: 400;
 }
 
-main .form-control {
-    /* Center form controls */
-    display: inline-block;
-
-    /* Override Bootstrap's 100% width for form controls */
-    width: auto;
-}
-
 main {
     /* Scroll horizontally as needed */
     overflow-x: auto;
-
-    /* Center contents */
-    text-align: center;
 }
 
 main img {
@@ -75,7 +64,45 @@ main img {
 }
 
 footer {
-    /* footer */
+    /* Footer */
     font-size: 90%;
 }
 
+.btn-primary {
+    /* Buttons */
+    color: white;
+    background-color: #64090A;
+    border-color: #64090A;
+}
+
+.btn-primary:hover {
+    /* Hover on buttons */
+    color: #fff;
+    background-color: #7d9999;
+    border-color: #7d9999;
+}
+
+.btn-primary:active, .btn-primary:focus, .btn-primary:active:focus {
+    /* Click on buttons */
+    color: #fff;
+    background-color: #7d9999;
+    border-color: #7d9999;
+    box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
+}
+
+.form-control:focus {
+    /* Focus on forms */
+    border-color: #7d9999;
+    box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
+}
+
+form label {
+    /* Form labels */
+    font-weight: 600;
+}
+
+/* unordered list */
+header ul {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}

@@ -4,17 +4,47 @@
     View Log
 {% endblock %}
 
+{% block image %}
+    <img src="/static/images/jump.jpg" alt="image-jump" class="img-fluid mx-auto d-block" width="90%">
+{% endblock %}
+
 {% block main %}
     <form action="/register" method="post">
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        <h1 class="green">Register</h1>
+        <p>Please create an account to be part of the addi family.</p>
+        
+        <hr> 
+
+        <div class="mb-3 row justify-content-md-center">
+            <label for="name" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-4">
+                <input class="form-control" name="name" placeholder="Name" type="text" autocomplete="off" autofocus>
+            </div>
         </div>
-        <div class="form-group">
-            <input class="form-control" name="password" placeholder="Password" type="password">
+        <div class="mb-3 row justify-content-md-center">
+            <label for="username" class="col-sm-3 col-form-label">Username</label>
+            <div class="col-sm-4">
+                <input class="form-control" name="username" placeholder="Username for login" type="text" autocomplete="off">
+            </div>
         </div>
-        <div class="form-group">
-            <input class="form-control" name="confirmation" placeholder="Password (again)" type="password">
+        <div class="mb-3 row justify-content-md-center">
+            <label for="password" class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-4">
+                <input class="form-control" name="password" placeholder="At least 6 characters" type="password" autocomplete="off" minlength="6">
+            </div>     
         </div>
-        <button class="btn btn-primary" type="submit">Register</button>
+        <div class="mb-3 row justify-content-md-center">
+            <label for="confirmation" class="col-sm-3 col-form-label"> Password</label>
+            <div class="col-sm-4">
+                <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password" autocomplete="off" minlength="6">
+            </div>
+        </div>
+
+
+        <div class="mb-3 row">
+            <div class="d-grid gap-2 col-4 mx-auto">
+                <button class="btn btn-primary" type="submit">Register</button>
+            </div>
+        </div>
     </form>
 {% endblock %}
