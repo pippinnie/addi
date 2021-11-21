@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "2col_layout.html" %}
 
 {% block title %}
     Log In
@@ -8,7 +8,7 @@
     <img src="/static/images/dance.jpg" alt="image-dance" class="img-fluid mx-auto d-block" width="50%">
 {% endblock %}
 
-{% block main %}
+{% block content %}
     <form action="/login" method="post">
         <h1 class="green">Log In</h1>
         <p>Please sign in and enjoy addi's workout log.</p>

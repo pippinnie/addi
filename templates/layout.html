@@ -35,7 +35,19 @@
 
         <!-- jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                
+        
+        <script>
+            // when an alert is dismissed, change focus to brand
+            document.addEventListener('DOMContentLoaded', function() {
+                var alert = document.getElementById('alert');
+                if (!!alert) {
+                    alert.addEventListener('closed.bs.alert', function () {
+                        document.getElementById('brand').focus();
+                    })
+                }
+            });             
+        </script>
+                        
         <title>{% block title %}{% endblock %} - addi</title>
 
     </head>
@@ -45,7 +57,7 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/">
+                    <a id="brand" class="navbar-brand" href="/">
                         <img src="/static/favicon/favicon.ico" alt="logo" width="50" height="50" class="d-inline-block align-text-bottom">
                         <span class="brand green">addi</span>
                     </a>
@@ -76,14 +88,14 @@
                 <header>
                     
                     <!-- Use red background for error, green background for success -->
-                    <div class="alert alert-{{ messages[0][0] }} d-flex" role="alert">
+                    <div id="alert" class="alert alert-{{ messages[0][0] }} d-flex alert-dismissible fade show" role="alert">
                         
                         <!-- If more then one message, show as a list -->
                         {% if messages|length > 1 %}
-                        <ul class="mx-auto justify-content-center">
-                            {% for category, message in messages %}
-                                <li>{{ message }}</li>
-                            {% endfor %}    
+                            <ul class="mx-auto justify-content-center">
+                                {% for category, message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}    
 
                         <!-- If only one message, show the message -->
                         {% else %}
@@ -91,8 +103,9 @@
                                 <span class="mx-auto">{{ message }}</span>
                             {% endfor %}
                         {% endif %}
+                        </ul> 
 
-                        </ul>           
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                  
                 </header>
@@ -103,14 +116,9 @@
         <main class="container p-5">
             <div class="container">
                 <div class="row">
-                  <div class="col">
-                    {% block image %}{% endblock %}
-                  </div>
-                  <div class="col">
                     {% block main %}{% endblock %}
-                  </div>
                 </div>
-              </div>
+            </div>
         </main>
 
         <!-- footer -->
@@ -118,10 +126,10 @@
             <footer class="py-3 my-4 border-top">
                 <div class="text-center text-muted">
                     <a href="/">
-                    <img src="/static/favicon/favicon-16x16.png" alt="logo" width="18.4" height="18.4" ></img>
+                    <img src="/static/favicon/favicon-16x16.png" class="d-inline-block align-text-top" alt="logo" width="17" height="17" ></img>
                     <span class="green">addi</span>
                     </a>
-                    <p>This website is developed by Nattira Pinyosunun as a final project for 2021 CS50x.</p>
+                    <p>This website is developed by Nattira Pinyosunun from Bangkok, Thailand as a final project for 2021 CS50x.</p>
                 </div>
             </footer>
         </div>

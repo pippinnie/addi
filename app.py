@@ -124,9 +124,6 @@ def register():
 def login():
     """Log user in"""
 
-    # Forget any user_id
-    session.clear()
-
     # Configure to use SQLite database
     db = get_db()
 
@@ -168,6 +165,7 @@ def login():
             session["user_id"] = rows[0]["id"]
 
             # Redirect user to home page
+            flash("Hello!", "success")
             return redirect("/")
 
         else:
@@ -189,23 +187,11 @@ def logout():
     return redirect("/login")
 
 
-@app.route("/")
-@login_required
-def viewlog():
-    """View workout log"""
-
-    # Configure to use SQLite database
-    db = get_db()
-    users = db.execute("SELECT * FROM users;")
-    for user in users:
-        print(user)
-    return render_template("viewlog.html")
-
-
 @app.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
     """Keep track of workout completed"""
+
     # Configure to use SQLite database
     db = get_db()   
 
@@ -230,6 +216,19 @@ def add():
     # user reached via GET
     else:
         return render_template("add.html")
+
+@app.route("/")
+@login_required
+def viewlog():
+    """View workout log"""
+
+    # Configure to use SQLite database
+    db = get_db()
+    users = db.execute("SELECT * FROM users;")
+    for user in users:
+        print(user)
+    return render_template("viewlog.html")
+
 
 
 @app.route("/motivation")
