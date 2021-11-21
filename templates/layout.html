@@ -37,14 +37,18 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
         <script>
-            // when an alert is dismissed, change focus to brand
             document.addEventListener('DOMContentLoaded', function() {
+                // when an alert is dismissed, change focus to brand
                 var alert = document.getElementById('alert');
                 if (!!alert) {
                     alert.addEventListener('closed.bs.alert', function () {
                         document.getElementById('brand').focus();
                     })
                 }
+
+                $(function () {
+                    $('#datetimepicker1').datetimepicker();
+                });
             });             
         </script>
                         
@@ -115,7 +119,7 @@
         <!-- main body -->
         <main class="container p-5">
             <div class="container">
-                <div class="row">
+                <div class="row center justify-content-md-center">
                     {% block main %}{% endblock %}
                 </div>
             </div>

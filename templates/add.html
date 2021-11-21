@@ -5,7 +5,30 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="green">Under construction</h1>
+    <div class="col-sm-6">
+        <h1 class="green">Add Your Workout</h1>
+        <p>Keep track of the workout you completed and keep it rolling!</p>
 
-    <button type="submit"><img src="/static/images/dance.jpg" alt="image-dance" class="img-fluid mx-auto d-block" width="50%"> Text</button>
+        <hr> 
+
+        <form>
+            <div class="mb-3 row justify-content-md-center">
+                <label for="date" class="col-sm-3 col-form-label">Date</label>
+                <div class="col-sm-5">
+                    <div class="input-group date" id="datetimepicker1" data-date-format="dd-mm-yyyy">  
+                        <input class="form-control" type="text" value="12-02-2012">  
+                        <span class="add-on">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>    
+                </div>
+            </div>
+
+            <div class="mb-3 row justify-content-md-center">
+                <div class="d-grid gap-2 col-5 mx-auto">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
