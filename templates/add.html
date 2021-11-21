@@ -7,24 +7,56 @@
 {% block main %}
     <div class="col-sm-6">
         <h1 class="green">Add Your Workout</h1>
-        <p>Keep track of the workout you completed and keep it rolling!</p>
+        <p>
+            Keep track of the workout you completed and keep it rolling!
+        </p>
 
         <hr> 
 
         <form>
+            <!-- Date -->
             <div class="mb-3 row justify-content-md-center">
                 <label for="date" class="col-sm-3 col-form-label">Date</label>
                 <div class="col-sm-5">
-                    <div class="input-group date" id="datetimepicker1" data-date-format="dd-mm-yyyy">  
-                        <input class="form-control" type="text" value="12-02-2012">  
-                        <span class="add-on">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>    
+                    <input id="date" class="form-control" type="date" name="date">   
+                </div>
+            </div>
+            
+            <!-- Workout type -->
+            <fieldset class="mb-3 row justify-content-md-center">
+                <legend for="workout_type" class="col-sm-3 col-form-label pt-0">Workout Type</legend>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="workout_type" id="cardio">  
+                        <label class="form-check-label" for="cardio">Cardio</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="workout_type" id="strength">  
+                        <label class="form-check-label" for="strength">Strength</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="workout_type" id="flexibility">  
+                        <label class="form-check-label" for="flexibility">Flexibility</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Duration -->
+            <div class="mb-3 row justify-content-md-center">
+                <label for="duration" class="col-sm-3 col-form-label">Duration</label>
+                    <div class="col-sm-5">
+                        <div class="col-sm-4">
+                            <input id="duration" class="form-control" type="integer" name="duration" maxlength="4" autocomplete="off">
+                        </div>
+                        <div class="col-sm-4">
+                            <span class="form-text">minutes</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="mb-3 row justify-content-md-center">
+            <!-- Button -->
+            <div class="row justify-content-md-center">
                 <div class="d-grid gap-2 col-5 mx-auto">
                     <button class="btn btn-primary" type="submit">Add</button>
                 </div>

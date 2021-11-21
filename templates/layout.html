@@ -36,28 +36,14 @@
         <!-- jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // when an alert is dismissed, change focus to brand
-                var alert = document.getElementById('alert');
-                if (!!alert) {
-                    alert.addEventListener('closed.bs.alert', function () {
-                        document.getElementById('brand').focus();
-                    })
-                }
-
-                $(function () {
-                    $('#datetimepicker1').datetimepicker();
-                });
-            });             
-        </script>
+        <script src="/static/app.js"></script>
                         
         <title>{% block title %}{% endblock %} - addi</title>
 
     </head>
 
     <body>
-        <!-- header with brand and menu -->
+        <!-- Header with brand and menu -->
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -86,7 +72,7 @@
 
         </header>
         
-        <!-- flash messages -->
+        <!-- Flash messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <header>
@@ -116,7 +102,7 @@
             {% endif %}
         {% endwith %}
 
-        <!-- main body -->
+        <!-- Main body -->
         <main class="container p-5">
             <div class="container">
                 <div class="row center justify-content-md-center">
@@ -125,7 +111,7 @@
             </div>
         </main>
 
-        <!-- footer -->
+        <!-- Footer -->
         <div class="container">
             <footer class="py-3 my-4 border-top">
                 <div class="text-center text-muted">

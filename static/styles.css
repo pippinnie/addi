@@ -1,26 +1,26 @@
+/* Size for brand */
 nav .navbar-brand {
-    /* Size for brand */
     font-size: xx-large;
     display: flex;
 }
 
+/* Menu */
 nav {
-    /* Menu */
     font-weight: 500;
     font-size: large;
 }
 
+/* Links */
 .nav-link, a {
-    /* Links */
+
     text-decoration: none;
     color: #AC090A;
 }
 
+/* Hover on menu */
 .nav-link:hover, .nav-link:focus {
-    /* Hover on menu */
     color: #7d9999;
 }
-
 nav .active {
     color: #7d9999;
 }
@@ -30,15 +30,14 @@ nav .green, .navbar-light .navbar-brand, .green {
     color: #7d9999;
 }
 
-.brand {
-    /* Brand on header */
+/* Brand on header */
+.brand { 
     margin-left: 10px;
 }
 
 .nav-item {
-    /* Border for menus */
+    /* Border for nav menus */
     border-right: solid grey;
-
 }
 
 .nav-item:last-child {
@@ -63,46 +62,55 @@ main img {
     max-width: 100%;
 }
 
+/* Footer */
 footer {
-    /* Footer */
     font-size: 90%;
 }
 
+/* Buttons */
 .btn-primary {
-    /* Buttons */
     color: white;
     background-color: #64090A;
     border-color: #64090A;
 }
 
+/* Hover on buttons */
 .btn-primary:hover {
-    /* Hover on buttons */
     color: #fff;
     background-color: #7d9999;
     border-color: #7d9999;
 }
 
+/* Click on buttons */
 .btn-primary:active, .btn-primary:focus, .btn-primary:active:focus {
-    /* Click on buttons */
     color: #fff;
     background-color: #7d9999;
     border-color: #7d9999;
     box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
 }
 
+/* Focus on forms */
 .form-control:focus, .btn-close:focus {
-    /* Focus on forms */
     border-color: #7d9999;
     box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
 }
 
-form label {
-    /* Form labels */
+/* Form labels */
+.col-form-label {
     font-weight: 600;
-}
+} 
 
-/* unordered list */
+/* Unordered list */
 header ul {
     margin-top: 0rem;
     margin-bottom: 0rem;
+}
+
+/* Form check */
+.form-check-input:checked {
+    background-color: #7d9999;
+    border-color: #7d9999;
+}
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
 }
