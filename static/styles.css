@@ -11,7 +11,7 @@ nav {
 }
 
 /* Links */
-.nav-link, a {
+.nav-link, a, .red {
 
     text-decoration: none;
     color: #AC090A;
@@ -28,6 +28,11 @@ nav .active {
 /* Colors for brand */
 nav .green, .navbar-light .navbar-brand, .green {
     color: #7d9999;
+}
+
+/* Colors for workout types */
+.blue {
+    color: navy;
 }
 
 /* Brand on header */
@@ -106,7 +111,7 @@ header ul {
     margin-bottom: 0rem;
 }
 
-/* Form check */
+/* Form radio selection */
 .form-check-input:checked {
     background-color: #7d9999;
     border-color: #7d9999;
@@ -114,3 +119,10 @@ header ul {
 .form-check-input:focus {
     box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
 }
+
+/* Form radio */
+.form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+}
+

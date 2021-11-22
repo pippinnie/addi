@@ -8,56 +8,95 @@
     <div class="col-sm-6">
         <h1 class="green">Add Your Workout</h1>
         <p>
-            Keep track of the workout you completed and keep it rolling!
+            Keep track of the workout you completed.
         </p>
 
         <hr> 
 
-        <form>
-            <!-- Date -->
-            <div class="mb-3 row justify-content-md-center">
-                <label for="date" class="col-sm-3 col-form-label">Date</label>
-                <div class="col-sm-5">
-                    <input id="date" class="form-control" type="date" name="date">   
+        <form action="/add" method="post">
+            <div class="row mb-4">
+                <legend for="timing">Timing:</legend>
+                <!-- Date -->
+                <div class="col-sm-4">
+                    <div class="form-floating">
+                        <input id="date" type="date" class="form-control" name="date" autofocus required>
+                        <label for="date">Date</label>
+                    </div>
+                </div>
+                <!-- Duration -->
+                <div class="col-sm-3">
+                    <div class="form-floating">
+                        <input id="duration" class="form-control text-center" type="number" name="duration" min="0" max="360" value="30" autocomplete="off" required/>
+                        <label for="duration" class="col-sm-2">Minutes</label>
+                    </div>
                 </div>
             </div>
             
             <!-- Workout type -->
-            <fieldset class="mb-3 row justify-content-md-center">
-                <legend for="workout_type" class="col-sm-3 col-form-label pt-0">Workout Type</legend>
-                <div class="col-sm-5">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="workout_type" id="cardio">  
-                        <label class="form-check-label" for="cardio">Cardio</label>
+            <fieldset class="mb-4">
+                <legend for="workout_type">Workout Type:</legend>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="workout_type" value="cardio" id="cardio" required>  
+                            <label class="form-check-label red" for="cardio">
+                                Cardio
+                                <img src="/static/images/cardio.jpg" alt="image-cardio" class="img-fluid d-block" width="100%">
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="workout_type" id="strength">  
-                        <label class="form-check-label" for="strength">Strength</label>
+                    <div class="col-sm-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="workout_type" value="strength" id="strength">  
+                            <label class="form-check-label blue" for="strength">
+                                Strength
+                                <img src="/static/images/weight.jpg" alt="image-weight" class="img-fluid d-block" width="100%">
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="workout_type" id="flexibility">  
-                        <label class="form-check-label" for="flexibility">Flexibility</label>
+                    <div class="col-sm-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="workout_type" value="flexibility" id="flexibility">  
+                            <label class="form-check-label green" for="flexibility">
+                                Flexibility
+                                <img src="/static/images/yoga.jpg" alt="image-yoga" class="img-fluid d-block" width="100%">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="workout_type" value="mix" id="Mix">  
+                            <label class="form-check-label" for="Mix">
+                                <span class="red">M</span><span class="blue">I</span><span class="green">X</span>
+                                <img src="/static/images/mix.jpg" alt="image-mix" class="img-fluid d-block" width="100%">
+                            </label>
+                        </div>
                     </div>
                 </div>
             </fieldset>
 
-            <!-- Duration -->
-            <div class="mb-3 row justify-content-md-center">
-                <label for="duration" class="col-sm-3 col-form-label">Duration</label>
-                    <div class="col-sm-5">
-                        <div class="col-sm-4">
-                            <input id="duration" class="form-control" type="integer" name="duration" maxlength="4" autocomplete="off">
-                        </div>
-                        <div class="col-sm-4">
-                            <span class="form-text">minutes</span>
-                        </div>
+            <div class="row mb-4">
+                <legend for="details">Details:</legend>
+                <!-- Title -->
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <textarea id="title" class="form-control" placeholder="Title" name="title" maxlength="250"></textarea>
+                        <label for="title">Title (optional)</label>
+                    </div>
+                </div>
+
+                <!-- Instructor -->
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <textarea id="instructor" class="form-control" placeholder="Instructor" name="instructor" maxlength="250"></textarea>
+                        <label for="instructor">Instructor (optional)</label>
                     </div>
                 </div>
             </div>
-
+                 
             <!-- Button -->
-            <div class="row justify-content-md-center">
-                <div class="d-grid gap-2 col-5 mx-auto">
+            <div class="justify-content-md-center">
+                <div class="d-grid gap-2 col-3 mx-auto">
                     <button class="btn btn-primary" type="submit">Add</button>
                 </div>
             </div>

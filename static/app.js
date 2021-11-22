@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
     
-    // Get date source=https://teamtreehouse.com/community/html-input-date-field-how-to-set-default-value-to-todays-date
+    // Get today date 
+    // source=https://teamtreehouse.com/community/html-input-date-field-how-to-set-default-value-to-todays-date
     function getDate() {
         var today = new Date();
         var dd = today.getDate();
@@ -31,4 +32,19 @@ document.addEventListener('DOMContentLoaded', function() {
         window.onload = function() {
             getDate();
         };
+
+    // Search database
+    // let input = document.querySelector('input');
+    // input.addEventListener('keyup', function() {
+    //     $.get('/search?q=' + input.value, function(titles) {
+    //       let html = '';
+    //       for (let id in titles)
+    //       {
+    //           let title = titles[id].title;
+    //           html += '<li>' + title + '</li>';
+    //       }
+
+    //       document.querySelector('ul').innerHTML = html;
+    //     });
+    // });
 });          

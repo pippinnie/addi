@@ -152,7 +152,6 @@ def login():
             # username = username.upper()
             rows = db.execute("SELECT * FROM users WHERE username = ?", (username,))
             rows = list(rows)
-            print(rows)
 
             # Ensure username exists and password is correct
             if len(rows) != 1 or not check_password_hash(rows[0]["hash"], password):
@@ -197,21 +196,29 @@ def add():
 
     # user submited a form via POST
     if request.method == "POST":
-        symbol = request.form.get("symbol")
-        shares = request.form.get("shares")
+        date = request.form.get("date")
+        duration = request.form.get("duration")
+        workout_type = request.form.get("workout_type")
+        title = request.form.get("title")
+        instructor = request.form.get("instructor")
 
-        # Ensure symbol was submitted
-        if not symbol:
-            return apology("must provide symbol")
+        # Ensure date, duration and workout type were submitted
+        if not date or not duration or not workout_type:
+            flash("Please select date, workout duration and workout type.")
+            redirect("/add")
 
-        symbol = symbol.upper()
+        else:
+            # Insert the new workout into database
+            db.execute("INSERT INTO workouts (user_id, date, duration, workout_type, title, instructor) VALUES (?, ?, ?, ?, ?, ?)", (session["user_id"], date, duration, workout_type, title, instructor))
 
-        # Ensure shares was submitted
-        if not shares or not shares.isnumeric():
-            return apology("must provide number of shares")
-
-        # convert to integer for calculation e.g. <=0 and * price
-        shares = int(shares)
+            # Save (commit) the changes
+            db.commit()
+            
+            # Success Message
+            flash("Wonderful! Keep it rolling!", "success")
+            
+            # Redirect user to login page
+            return redirect("/add")
 
     # user reached via GET
     else:
@@ -224,11 +231,16 @@ def viewlog():
 
     # Configure to use SQLite database
     db = get_db()
-    users = db.execute("SELECT * FROM users;")
-    for user in users:
-        print(user)
-    return render_template("viewlog.html")
+    workouts = db.execute("SELECT * FROM workouts WHERE user_id = ?", (session["user_id"],))
+    print(workouts)
+    return render_template("viewlog.html", workouts=workouts)
 
+
+# @app.route("/search")
+# def search():
+#     db = get_db()
+#     titles = db.execute("SELECT title FROM workouts WHERE title LIKE ? AND user_id = ?", ("%" + request.args.get("q") + "%", session["user_id"]))
+#     return jsonify(titles)
 
 
 @app.route("/motivation")
