@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+
     // Get today date
     // source=https://teamtreehouse.com/community/html-input-date-field-how-to-set-default-value-to-todays-date
     function getDate() {
@@ -51,7 +52,17 @@ document.addEventListener('DOMContentLoaded', function() {
         header.classList.add("sticky");
     } else {
         header.classList.remove("sticky");
-    }
-}
+    }}
+
+
+    // Search box on workout log
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 
 });

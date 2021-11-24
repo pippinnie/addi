@@ -32,7 +32,7 @@
         <!-- Google fonts Karla -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,400;0,500;0,600;0,800;1,200;1,400;1,500;1,800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
         <!-- Separate Popper and Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -68,8 +68,8 @@
                         {% if session.user_id %}
                             <ul class="nav justify-content-end">
                                 <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'calendar'}} {{ 'disabled' if request.endpoint == 'calendar'}}" href="/">WORKOUT CALENDAR</a></li>
+                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'viewlog'}} {{ 'disabled' if request.endpoint == 'viewlog'}}" href="/viewlog">WORKOUT LOG</a></li>
                                 <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'add'}} {{ 'disabled' if request.endpoint == 'add'}}" href="/add">ADD WORKOUT</a></li>
-                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'viewlog'}} {{ 'disabled' if request.endpoint == 'viewlog'}}" href="/viewlog">VIEW LOG</a></li>
                                 <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'profile'}} {{ 'disabled' if request.endpoint == 'profile'}}" href="/profile">PROFILE</a></li>
                             </ul>
 

@@ -95,9 +95,10 @@ footer {
 }
 
 /* Focus on forms */
-.form-control:focus, .btn-close:focus {
+.form-control:focus, .btn-close:focus, *:focus-visible {
     border-color: #7d9999;
     box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
+    outline: -webkit-focus-ring-color auto 0px;
 }
 
 /* Form labels */
@@ -126,6 +127,11 @@ header ul {
     height: 1.2em;
 }
 
+ /* Input focus
+input:focus-visible {
+
+} */
+
 /* Style the header */
 .header {
     padding: 10px 16px;
@@ -145,4 +151,12 @@ header ul {
 /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
     padding-top: 102px;
+}
+
+/* Fixed tables */
+table.fixed {
+    table-layout:fixed;
+}
+table.fixed td {
+    overflow: hidden;
 }

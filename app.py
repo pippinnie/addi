@@ -222,7 +222,14 @@ def add():
 
     # user reached via GET
     else:
-        return render_template("add.html")
+        # Query database for titles and instructors from workouts table with the user id
+        rows = db.execute("SELECT * FROM workouts WHERE user_id = ?", (session["user_id"],))
+        rows = list(rows)
+
+        titles = rows[0]['title']
+        instructors = rows[0]['instructors']
+
+        return render_template("add.html", titles=titles, instructors=instructors)
 
 
 @app.route("/viewlog")
