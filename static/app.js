@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('brand').focus();
         })
     }
-    
-    // Get today date 
+
+    // Get today date
     // source=https://teamtreehouse.com/community/html-input-date-field-how-to-set-default-value-to-todays-date
     function getDate() {
         var today = new Date();
@@ -17,34 +17,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if(dd<10) {
             dd = '0'+dd
-        } 
+        }
 
         if(mm<10) {
             mm = '0'+mm
-        } 
+        }
 
         today = yyyy + '-' + mm + '-' + dd;
         console.log(today);
-        document.getElementById("date").value = today;
+        if (document.getElementById("date")) {
+            document.getElementById("date").value = today;
         }
+    }
+
+    window.onload = function() {
+        getDate();
+    };
 
 
-        window.onload = function() {
-            getDate();
-        };
+    // Sticky
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function() {myFunction()};
 
-    // Search database
-    // let input = document.querySelector('input');
-    // input.addEventListener('keyup', function() {
-    //     $.get('/search?q=' + input.value, function(titles) {
-    //       let html = '';
-    //       for (let id in titles)
-    //       {
-    //           let title = titles[id].title;
-    //           html += '<li>' + title + '</li>';
-    //       }
+    // Get the header
+    var header = document.getElementById("myHeader");
 
-    //       document.querySelector('ul').innerHTML = html;
-    //     });
-    // });
-});          
+    // Get the offset position of the navbar
+    var sticky = header.offsetTop;
+
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+    if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+    } else {
+        header.classList.remove("sticky");
+    }
+}
+
+});

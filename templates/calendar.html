@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    View Log
+{% endblock %}
+
+{% block main %}
+    <script>
+        var WORKOUT_SCHEDULES = [
+            {
+                id: '1',
+                calendarId: '1',
+                title: 'my schedule 2',
+                body: 'my schedule body',
+                category: 'allday',
+                start: '2021-11-18',
+                end: '2021-11-18',
+                goingDuration: 30,
+                bgColor: "green",
+                isReadOnly: true,
+            },
+            {
+                id: '2',
+                calendarId: '1',
+                title: 'my schedule 555',
+                body: 'my schedule body 789123',
+                category: 'allday',
+                start: '2021-11-18',
+                end: '2021-11-18',
+                bgColor: "salmon",
+                isReadOnly: true,
+            },
+            {
+                id: '3',
+                calendarId: '1',
+                title: 'second schedule',
+                category: 'time',
+                dueDateClass: '',
+                start: '2021-11-23T17:30:00+09:00',
+                end: '2021-11-23T17:31:00+09:00',
+                isReadOnly: true,    // schedule is read-only
+                comingDuration: 15,
+            }
+        ]
+    </script>
+    <script src="/static/calendar.js"></script>
+
+    <h1 class="green text-center">Workout Calendar</h1>
+    <div id="calendar"></div>
+
+{% endblock %}

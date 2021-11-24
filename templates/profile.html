@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add workout
+{% endblock %}
+
+{% block main %}
+    <div class="col-sm-5">
+        <h1 class="green">Profile</h1>
+        <a href="/logout">LOG OUT</a>
+
+        <hr>
+
+        <form action="/profile" method="post">
+            <div class="mb-4">
+                <!-- Username -->
+                <div class="mb-3 justify-content-md-center">
+                    <div class="col-sm-7 form-floating mx-auto">
+                        <input class="form-control" name="username" value="{{session['user_username']}}" placeholder="Username" type="text" autocomplete="off" disabled>
+                        <label for="username">Username</name>
+                    </div>
+                </div>
+                <!-- Name -->
+                <div class="mb-3 justify-content-md-center">
+                    <div class="col-sm-7 form-floating mx-auto">
+                        <input class="form-control" name="name" value="{{session['user_name']}}" type="text" autocomplete="off">
+                        <label for="name">Name</name>
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="mb-3 justify-content-md-center">
+                    <div class="col-sm-7 form-floating mx-auto">
+                        <input class="form-control" name="password" placeholder="New password 6+ characters" type="password" autocomplete="off" minlength="6">
+                        <label for="password">New Password (6+ characters)</name>
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="mb-3 justify-content-md-center">
+                    <div class="col-sm-7 form-floating mx-auto">
+                        <input class="form-control" name="confirmation" placeholder="Confirm new password" type="password" autocomplete="off" minlength="6">
+                        <label for="conformation">Confirm Password</name>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="justify-content-md-center">
+                <div class="d-grid gap-2 col-3 mx-auto">
+                    <button class="btn btn-primary" type="submit">Update</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

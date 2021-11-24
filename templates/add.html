@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="workout_type" value="cardio" id="cardio" required>  
+                            <input class="form-check-input" type="radio" name="workout_type" value="Cardio" id="cardio" required>  
                             <label class="form-check-label red" for="cardio">
                                 Cardio
                                 <img src="/static/images/cardio.jpg" alt="image-cardio" class="img-fluid d-block" width="100%">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="workout_type" value="strength" id="strength">  
+                            <input class="form-check-input" type="radio" name="workout_type" value="Strength" id="strength">  
                             <label class="form-check-label blue" for="strength">
                                 Strength
                                 <img src="/static/images/weight.jpg" alt="image-weight" class="img-fluid d-block" width="100%">
@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="workout_type" value="flexibility" id="flexibility">  
+                            <input class="form-check-input" type="radio" name="workout_type" value="Flexibility" id="flexibility">  
                             <label class="form-check-label green" for="flexibility">
                                 Flexibility
                                 <img src="/static/images/yoga.jpg" alt="image-yoga" class="img-fluid d-block" width="100%">
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="workout_type" value="mix" id="Mix">  
+                            <input class="form-check-input" type="radio" name="workout_type" value="Mix" id="Mix">  
                             <label class="form-check-label" for="Mix">
                                 <span class="red">M</span><span class="blue">I</span><span class="green">X</span>
                                 <img src="/static/images/mix.jpg" alt="image-mix" class="img-fluid d-block" width="100%">
@@ -80,7 +80,7 @@
                 <!-- Title -->
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <textarea id="title" class="form-control" placeholder="Title" name="title" maxlength="250"></textarea>
+                        <input id="title" class="form-control" placeholder="Title" name="title" type="text" maxlength="250" autocomplete="on">
                         <label for="title">Title (optional)</label>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                 <!-- Instructor -->
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <textarea id="instructor" class="form-control" placeholder="Instructor" name="instructor" maxlength="250"></textarea>
+                        <input id="instructor" class="form-control" placeholder="Instructor" name="instructor" type="text" maxlength="250" autocomplete="on">
                         <label for="instructor">Instructor (optional)</label>
                     </div>
                 </div>

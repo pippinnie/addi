@@ -29,7 +29,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
-# Close database connection 
+# Close database connection
 @app.teardown_appcontext
 def teardown_db(exception):
     close_db()
@@ -62,10 +62,10 @@ def register():
         username = request.form.get("username").upper()
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
-        
+
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", (username,))
-        
+
         # To keep track if any error
         valid = True
 
@@ -76,7 +76,7 @@ def register():
 
         # Ensure username was submitted
         if not username:
-            valid = False          
+            valid = False
             flash("Please provide username.", "danger")
 
         # Check if username already exists
@@ -98,16 +98,16 @@ def register():
         if valid == True:
             # Hash the password
             hash = generate_password_hash(password)
-        
+
             # Insert the new user into database
             db.execute("INSERT INTO users (name, username, hash) VALUES (?, ?, ?)", (name, username, hash))
 
             # Save (commit) the changes
             db.commit()
-            
+
             # Register user
             flash("Succesfully registered. Welcome to the addi family!", "success")
-            
+
             # Redirect user to login page
             return redirect("/login")
 
@@ -129,10 +129,10 @@ def login():
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-        
+
         # To keep track if any error
         valid = True
-    
+
         # Get data from the form
         username = request.form.get("username").upper()
         password = request.form.get("password")
@@ -162,9 +162,10 @@ def login():
         if valid == True:
             # Remember which user has logged in
             session["user_id"] = rows[0]["id"]
+            session["user_name"] = rows[0]['name']
+            session["user_username"] = rows[0]['username']
 
-            # Redirect user to home page
-            flash("Hello!", "success")
+            # Redirect user to workout calendar
             return redirect("/")
 
         else:
@@ -192,7 +193,7 @@ def add():
     """Keep track of workout completed"""
 
     # Configure to use SQLite database
-    db = get_db()   
+    db = get_db()
 
     # user submited a form via POST
     if request.method == "POST":
@@ -205,7 +206,6 @@ def add():
         # Ensure date, duration and workout type were submitted
         if not date or not duration or not workout_type:
             flash("Please select date, workout duration and workout type.")
-            redirect("/add")
 
         else:
             # Insert the new workout into database
@@ -213,39 +213,94 @@ def add():
 
             # Save (commit) the changes
             db.commit()
-            
+
             # Success Message
             flash("Wonderful! Keep it rolling!", "success")
-            
-            # Redirect user to login page
-            return redirect("/add")
+
+        # Redirect user to login page
+        return redirect("/add")
 
     # user reached via GET
     else:
         return render_template("add.html")
 
-@app.route("/")
+
+@app.route("/viewlog")
 @login_required
 def viewlog():
     """View workout log"""
 
     # Configure to use SQLite database
     db = get_db()
-    workouts = db.execute("SELECT * FROM workouts WHERE user_id = ?", (session["user_id"],))
-    print(workouts)
+    workouts = db.execute("SELECT * FROM workouts WHERE user_id = ? ORDER BY date DESC", (session["user_id"],))
     return render_template("viewlog.html", workouts=workouts)
 
 
-# @app.route("/search")
-# def search():
-#     db = get_db()
-#     titles = db.execute("SELECT title FROM workouts WHERE title LIKE ? AND user_id = ?", ("%" + request.args.get("q") + "%", session["user_id"]))
-#     return jsonify(titles)
+@app.route("/")
+# @login_required
+def calendar():
+    return render_template("calendar.html")
 
 
-@app.route("/motivation")
-def motivation():
-    return render_template("motivation/html")
+@app.route("/profile", methods=["GET", "POST"])
+@login_required
+def profile():
+    """Update user profile"""
+
+    # Configure to use SQLite database
+    db = get_db()
+
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+
+        # Get data from the form
+        name = request.form.get("name")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+
+        if not password or not confirmation:
+            # Check if no change to name
+            if not name or name == session['user_name']:
+                flash("No update", "danger")
+
+            else:
+                # Update name
+                db.execute("UPDATE users SET name = ? WHERE id = ?", (name, session["user_id"]))
+
+                # Save (commit) the changes
+                db.commit()
+
+                # Update user's name
+                flash("Name succesfully updated.", "success")
+
+                # Update session name
+                session['user_name'] = name
+
+        # Update pwd
+        elif not name or name == session['user_name']:
+            # Ensure passwards are matched
+            if password != confirmation:
+                flash("Passwords do not match. Please try again", "danger")
+
+            else:
+                # Hash the password
+                hash = generate_password_hash(password)
+
+                # update the user's database
+                db.execute("UPDATE users SET hash = ? WHERE id = ?", (hash, session["user_id"]))
+
+                # Save (commit) the changes
+                db.commit()
+
+                # Update user
+                flash("Password succesfully updated.", "success")
+
+        # Redirect user to profile page
+        return redirect("/profile")
+
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("profile.html")
 
 
 

@@ -1,3 +1,8 @@
+/* Colors for brand */
+nav .green, .navbar-light .navbar-brand, .green {
+    color: #7d9999;
+}
+
 /* Size for brand */
 nav .navbar-brand {
     font-size: xx-large;
@@ -18,15 +23,10 @@ nav {
 }
 
 /* Hover on menu */
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover, .nav-link:focus, a:hover {
     color: #7d9999;
 }
 nav .active {
-    color: #7d9999;
-}
-
-/* Colors for brand */
-nav .green, .navbar-light .navbar-brand, .green {
     color: #7d9999;
 }
 
@@ -36,7 +36,7 @@ nav .green, .navbar-light .navbar-brand, .green {
 }
 
 /* Brand on header */
-.brand { 
+.brand {
     margin-left: 10px;
 }
 
@@ -103,7 +103,7 @@ footer {
 /* Form labels */
 .col-form-label {
     font-weight: 600;
-} 
+}
 
 /* Unordered list */
 header ul {
@@ -126,3 +126,23 @@ header ul {
     height: 1.2em;
 }
 
+/* Style the header */
+.header {
+    padding: 10px 16px;
+    background: #555;
+    color: #f1f1f1;
+    z-index: 1000;
+    font-size: 1.5rem;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 102px;
+}
