@@ -80,7 +80,14 @@
                 <!-- Title -->
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <input id="title" class="form-control" placeholder="Title" name="title" type="text" maxlength="250" autocomplete="off">
+                        <input id="title" class="form-control" placeholder="Title" name="title" type="text" maxlength="250" list="titles" autocomplete="off">
+                        <datalist id="titles">
+                            {% if titles %}
+                                {% for title in titles %}
+                                    <option>{{ title }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </datalist>
                         <label for="title">Title (optional)</label>
                     </div>
                 </div>
@@ -88,7 +95,14 @@
                 <!-- Instructor -->
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <input id="instructor" class="form-control" placeholder="Instructor" name="instructor" type="text" maxlength="250" autocomplete="off">
+                        <input id="instructor" class="form-control" placeholder="Instructor" name="instructor" type="text" maxlength="250" list="instructors" autocomplete="off">
+                        <datalist id="instructors">
+                            {% if instructors %}
+                                {% for instructor in instructors %}
+                                    <option>{{ instructor }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </datalist>
                         <label for="instructor">Instructor (optional)</label>
                     </div>
                 </div>

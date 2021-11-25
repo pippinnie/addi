@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
 
-    // Sticky
+    // Sticky navbar
     // When the user scrolls the page, execute myFunction
     window.onscroll = function() {myFunction()};
 
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Search box on workout log
+    // source=https://www.w3schools.com/jquery/jquery_filters.asp
     $(document).ready(function(){
         $("#myInput").on("keyup", function() {
             var value = $(this).val().toLowerCase();

@@ -32,7 +32,7 @@ nav .active {
 
 /* Colors for workout types */
 .blue {
-    color: navy;
+    color: #408DCC;
 }
 
 /* Brand on header */
@@ -159,4 +159,21 @@ table.fixed {
 }
 table.fixed td {
     overflow: hidden;
+}
+
+
+/* Tui Calendar  */
+/* Select today */
+.tui-full-calendar-month-week-item .tui-full-calendar-today .tui-full-calendar-weekday-grid-date-decorator {
+    background: #555;
+}
+
+/* Schedule Title */
+.tui-full-calendar-weekday-schedule-title, .tui-full-calendar-month-more-schedule, .tui-full-calendar-month-more-allday, .tui-full-calendar-weekday-schedule-title {
+    color: white !important;
+}
+
+/* Schedule */
+.tui-full-calendar-weekday-schedule {
+    border: 0 !important;
 }

@@ -223,11 +223,23 @@ def add():
     # user reached via GET
     else:
         # Query database for titles and instructors from workouts table with the user id
-        rows = db.execute("SELECT * FROM workouts WHERE user_id = ?", (session["user_id"],))
-        rows = list(rows)
+        db_titles = db.execute("SELECT title FROM workouts WHERE user_id = ? GROUP BY title ORDER BY COUNT (title) DESC", (session["user_id"],))
+        db_instructors = db.execute("SELECT instructor FROM workouts WHERE user_id = ? GROUP BY instructor ORDER BY COUNT (instructor)", (session["user_id"],))
 
-        titles = rows[0]['title']
-        instructors = rows[0]['instructors']
+        db_titles = list(db_titles)
+        db_instructors = list(db_instructors)
+
+        titles = []
+        instructors = []
+
+        for title in db_titles:
+            titles.append(title['title'])
+
+        for instructor in db_instructors:
+            instructors.append(instructor['instructor'])
+
+        print(titles)
+        print(instructors)
 
         return render_template("add.html", titles=titles, instructors=instructors)
 
@@ -244,9 +256,48 @@ def viewlog():
 
 
 @app.route("/")
-# @login_required
+@login_required
 def calendar():
-    return render_template("calendar.html")
+    """View workout calendar"""
+
+    # Configure to use SQLite database
+    db = get_db()
+    workouts = db.execute("SELECT * FROM workouts WHERE user_id = ? ORDER BY date DESC", (session["user_id"],))
+
+    schedules = []
+
+    for workout in workouts:
+        date = workout['date']
+        duration = str(workout['duration'])
+        workoutType = workout['workout_type']
+        title = workout['title']
+        instructor = workout['instructor']
+
+        # Change bgColor depending on workout type
+        if workoutType == "Cardio":
+            color = "#AC090A"
+        elif workoutType == "Strength":
+            color = "#408DCC"
+        elif workoutType == "Flexibility":
+            color = "#7d9999"
+        else:
+            color = "#04030F"
+
+        # Add each workout into list of dictionary 'schedules'
+        schedules.append({
+                "title": duration + 'm ' + title,
+                "body": 'Instructor: ' + instructor,
+                "category": 'allday',
+                "start": date,
+                "bgColor": color,
+                "isReadOnly": True,
+                "raw": {
+                    "workoutType": workoutType
+                }
+            }
+        )
+
+    return render_template("calendar.html", schedules=schedules)
 
 
 @app.route("/profile", methods=["GET", "POST"])
