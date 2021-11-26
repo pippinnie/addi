@@ -20,6 +20,7 @@ nav {
 
     text-decoration: none;
     color: #AC090A;
+    font-weight: 700;
 }
 
 /* Hover on menu */
@@ -132,12 +133,18 @@ input:focus-visible {
 
 } */
 
-/* Style the header */
+/* Style the header of user's name */
 .header {
     padding: 10px 16px;
     background: #555;
     color: #f1f1f1;
     z-index: 1000;
+    font-size: 1.25rem;
+}
+
+/* Style the header of workout calendar and log */
+.subheader {
+    font-weight: bold;
     font-size: 1.5rem;
 }
 
@@ -161,6 +168,19 @@ table.fixed td {
     overflow: hidden;
 }
 
+/* Table */
+.row>* {
+    max-width: 80%;
+}
+
+/* Table col width */
+.smallCol {
+    width: 100px;
+}
+.middleCol {
+    width: 150px;
+}
+
 
 /* Tui Calendar  */
 /* Select today */
@@ -169,11 +189,13 @@ table.fixed td {
 }
 
 /* Schedule Title */
-.tui-full-calendar-weekday-schedule-title, .tui-full-calendar-month-more-schedule, .tui-full-calendar-month-more-allday, .tui-full-calendar-weekday-schedule-title {
+.tui-full-calendar-weekday-schedule-title, .tui-full-calendar-weekday-schedule-title {
     color: white !important;
 }
 
 /* Schedule */
-.tui-full-calendar-weekday-schedule {
+.tui-full-calendar-weekday-schedule, .tui-full-calendar-month-more-schedule, .tui-full-calendar-month-more-allday {
     border: 0 !important;
 }
+
+

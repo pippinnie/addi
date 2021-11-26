@@ -7,11 +7,18 @@
 {% block main %}
     <script>
         var WORKOUT_SCHEDULES = JSON.parse('{{ schedules|tojson|safe }}');
-        console.log(WORKOUT_SCHEDULES)
+        // console.log(WORKOUT_SCHEDULES)
     </script>
     <script src="/static/calendar.js"></script>
 
     <h1 class="green text-center mb-3">Workout Calendar</h1>
+    <!-- Change Month -->
+    <div class="mb-3">
+        <button onclick="today()" class="btn btn-primary"> Today </button>
+        <button onclick="prev()" class="btn btn-primary"><i class="fa-solid fa-circle-left"></i></button>
+        <span id="calHeader" class="subheader align-middle"></span>
+        <button onclick="next()" class="btn btn-primary"><i class="fa-solid fa-circle-right"></i></button>
+    </div>
     <div id="calendar"></div>
 
 {% endblock %}

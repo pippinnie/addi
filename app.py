@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
@@ -166,7 +167,7 @@ def login():
             session["user_username"] = rows[0]['username']
 
             # Redirect user to workout calendar
-            return redirect("/")
+            return redirect("/add")
 
         else:
             return redirect("/login")
@@ -245,14 +246,20 @@ def add():
 
 
 @app.route("/viewlog")
+@app.route("/viewlog/<int:year>")
 @login_required
-def viewlog():
+def viewlog(year=None):
     """View workout log"""
 
+    # Get current year
+    if year is None:
+        year = datetime.now().year
+
+    print(year)
     # Configure to use SQLite database
     db = get_db()
-    workouts = db.execute("SELECT * FROM workouts WHERE user_id = ? ORDER BY date DESC", (session["user_id"],))
-    return render_template("viewlog.html", workouts=workouts)
+    workouts = db.execute("SELECT * FROM workouts WHERE user_id = ? AND strftime('%Y', date) = ? ORDER BY date DESC", (session["user_id"], str(year)))
+    return render_template("viewlog.html", workouts=workouts, year=year)
 
 
 @app.route("/")
@@ -286,7 +293,7 @@ def calendar():
         # Add each workout into list of dictionary 'schedules'
         schedules.append({
                 "title": duration + 'm ' + title,
-                "body": 'Instructor: ' + instructor,
+                "body": workoutType + ' workout, ' + 'Instructor: ' + instructor,
                 "category": 'allday',
                 "start": date,
                 "bgColor": color,

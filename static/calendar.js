@@ -1,6 +1,10 @@
+// Global variable calendar
+var CALENDAR;
+
 // TUI Calendar
 document.addEventListener('DOMContentLoaded', function() {
-    var calendar = new tui.Calendar('#calendar', {
+    // Create an emtpy calendar
+    CALENDAR = new tui.Calendar('#calendar', {
         defaultView: 'month',
         isReadOnly: true,
         useDetailPopup: true,
@@ -23,7 +27,35 @@ document.addEventListener('DOMContentLoaded', function() {
             },
         },
     });
+    // Create schedules into the calendar
     if (typeof WORKOUT_SCHEDULES !== undefined) {
-        calendar.createSchedules(WORKOUT_SCHEDULES);
+        CALENDAR.createSchedules(WORKOUT_SCHEDULES);
     }
+
+    calHeader();
 });
+
+// Get current month and year
+function calHeader() {
+    var calHeader = document.getElementById("calHeader");
+    currentDate = CALENDAR.getDate();
+    calHeader.innerHTML = `${currentDate.getFullYear()}.${currentDate.getMonth() + 1}`;
+}
+
+// Move to today
+function today() {
+    CALENDAR.today();
+    calHeader();
+}
+
+// Move to previous month
+function prev() {
+    CALENDAR.prev();
+    calHeader();
+}
+
+// Move to next month
+function next() {
+    CALENDAR.next();
+    calHeader();
+}
