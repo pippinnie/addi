@@ -7,38 +7,53 @@
 {% block main %}
     <div class="col-sm-5">
         <h1 class="green">Profile</h1>
-        <a href="/logout">LOG OUT</a>
+        <p>
+            You can change your username and password here.
+        </p>
 
         <hr>
 
         <form action="/profile" method="post">
-            <div class="mb-4">
+            <div class="mb-3">
                 <!-- Username -->
-                <div class="mb-3 justify-content-md-center">
-                    <div class="col-sm-7 form-floating mx-auto">
-                        <input class="form-control" name="username" value="{{session['user_username']}}" placeholder="Username" type="text" autocomplete="off" disabled>
-                        <label for="username">Username</name>
-                    </div>
-                </div>
-                <!-- Name -->
-                <div class="mb-3 justify-content-md-center">
-                    <div class="col-sm-7 form-floating mx-auto">
-                        <input class="form-control" name="name" value="{{session['user_name']}}" type="text" autocomplete="off">
-                        <label for="name">Name</name>
-                    </div>
-                </div>
-                <!-- Password -->
-                <div class="mb-3 justify-content-md-center">
-                    <div class="col-sm-7 form-floating mx-auto">
-                        <input class="form-control" name="password" placeholder="New password 6+ characters" type="password" autocomplete="off" minlength="6">
-                        <label for="password">New Password (6+ characters)</name>
+                <div class="mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                            <div class="form-floating mx-auto">
+                                <input class="form-control" name="username" value="{{session['user_username']}}" placeholder="Username" type="text" minlength="6" autocomplete="off">
+                                <label for="username">Username</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 floating-form-icon">
+                            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" title="minimum 6 characters"></i>
+                        </div>
                     </div>
                 </div>
                 <!-- Password -->
-                <div class="mb-3 justify-content-md-center">
-                    <div class="col-sm-7 form-floating mx-auto">
-                        <input class="form-control" name="confirmation" placeholder="Confirm new password" type="password" autocomplete="off" minlength="6">
-                        <label for="conformation">Confirm Password</name>
+                <div class="mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                            <div class="form-floating mx-auto">
+                                <input class="form-control" name="password" placeholder="New password" type="password" autocomplete="off" minlength="8">
+                                <label for="password">New Password</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 floating-form-icon">
+                            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" title="minimum 8 characters"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Confirm password -->
+                <div class="mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                            <div class="form-floating mx-auto">
+                                <input class="form-control" name="confirmation" placeholder="Confirm new password" type="password" autocomplete="off" minlength="8">
+                                <label for="conformation">Confirm Password</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 floating-form-icon">
+                        </div>
                     </div>
                 </div>
             </div>

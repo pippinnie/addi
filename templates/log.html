@@ -10,10 +10,10 @@
         <div class="row mb-3">
             <!-- Change Year -->
             <div class="col-sm-9">
-                <a href="/viewlog" class="btn btn-primary">Current Year</a>
-                <a href="/viewlog/{{ year - 1 }}" class="btn btn-primary"><i class="fa-solid fa-circle-left"></i></a>
+                <a href="/log" class="btn btn-primary">Current Year</a>
+                <a href="/log/{{ year - 1 }}" class="btn btn-primary"><i class="fa-solid fa-circle-left"></i></a>
+                <a href="/log/{{ year + 1 }}" class="btn btn-primary"><i class="fa-solid fa-circle-right"></i></a>
                 <span class="subheader align-middle">{{ year }}</span>
-                <a href="/viewlog/{{ year + 1 }}" class="btn btn-primary"><i class="fa-solid fa-circle-right"></i></a>
             </div>
 
             <!-- Search box -->
@@ -28,28 +28,28 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <table class="table fixed">
-        <thead>
-           <tr>
-               <th class="smallCol">Date</th>
-               <th class="smallCol">Duration</th>
-               <th class="middleCol">Workout Type</th>
-               <th>Title</th>
-               <th>Instructor</th>
-           </tr>
-        </thead>
-        <tbody id='myTable'>
-            {% for workout in workouts %}
+        <table class="table fixed">
+            <thead>
             <tr>
-                <td>{{ workout['date'] }}</td>
-                <td>{{ workout['duration'] }}</td>
-                <td>{{ workout['workout_type'] }}</td>
-                <td>{{ workout['title'] }}</td>
-                <td>{{ workout['instructor'] }}</td>
+                <th class="smallCol">Date</th>
+                <th class="smallCol">Duration</th>
+                <th class="middleCol">Workout Type</th>
+                <th>Title</th>
+                <th>Instructor</th>
             </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody id='myTable'>
+                {% for workout in workouts %}
+                <tr>
+                    <td>{{ workout['date'] }}</td>
+                    <td>{{ workout['duration'] }}</td>
+                    <td>{{ workout['workout_type'] }}</td>
+                    <td>{{ workout['title'] }}</td>
+                    <td>{{ workout['instructor'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -61,7 +61,7 @@
     <body>
         <!-- Header with brand and menu -->
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav id="myHeader" class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a id="brand" class="navbar-brand" href="/">
                         <img src="/static/favicon/favicon.ico" alt="logo" width="50" height="50" class="d-inline-block align-text-bottom">
@@ -70,16 +70,24 @@
                     <div id="menu">
                         {% if session.user_id %}
                             <ul class="nav justify-content-end">
-                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'add'}} {{ 'disabled' if request.endpoint == 'add'}}" href="/add">Add</a></li>
-                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'calendar'}} {{ 'disabled' if request.endpoint == 'calendar'}}" href="/">Calendar</a></li>
-                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'viewlog'}} {{ 'disabled' if request.endpoint == 'viewlog'}}" href="/viewlog">Log</a></li>
-                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'profile'}} {{ 'disabled' if request.endpoint == 'profile'}}" href="/profile">Profile</a></li>
+                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'add'}}" href="/add">Add</a></li>
+                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'calendar'}}" href="/calendar">Calendar</a></li>
+                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'log'}}" href="/log">Log</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle {{ 'active' if request.endpoint == 'profile'}}" href="/profile" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Profile
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="/profile">Update</a></li>
+                                        <li><a class="dropdown-item" href="/signout">Sign out</a></li>
+                                    </ul>
+                                </li>
                             </ul>
 
                         {% else %}
                             <ul class="nav justify-content-end">
-                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'login'}} {{ 'disabled' if request.endpoint == 'login'}}" href="/login">Log In</a></li>
-                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'register'}} {{ 'disabled' if request.endpoint == 'register'}}" href="/register">Register</a></li>
+                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'signin'}}" href="/">Sign In</a></li>
+                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'register'}}}}" href="/register">Register</a></li>
                             </ul>
                         {% endif %}
                     </div>
@@ -87,9 +95,9 @@
               </nav>
 
             <!-- Show name -->
-            {% if session.user_name %}
-            <div class="header text-center" id="myHeader">
-                    {{session['user_name']}}
+            {% if session.user_username %}
+            <div class="text-center usersName">
+                {{session['user_username']}}
             </div>
             {% endif %}
 
@@ -124,7 +132,7 @@
         </header>
 
         <!-- Main body -->
-        <main class="container p-3">
+        <main class="container p-4">
             <div class="container">
                 <div class="row center justify-content-md-center">
                     {% block main %}{% endblock %}

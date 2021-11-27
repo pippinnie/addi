@@ -59,8 +59,7 @@ def register():
     if request.method == "POST":
 
         # Get data from the form
-        name = request.form.get("name")
-        username = request.form.get("username").upper()
+        username = request.form.get("username")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
@@ -70,15 +69,15 @@ def register():
         # To keep track if any error
         valid = True
 
-        # Ensure name was submitted
-        if not name:
-            valid = False
-            flash("Please provide name.", "danger")
-
         # Ensure username was submitted
         if not username:
             valid = False
             flash("Please provide username.", "danger")
+
+        # Ensure username length is greater than min requirement
+        elif len(username) < 6:
+            valid = False
+            flash("Username must be at least 6 characters.", "danger")
 
         # Check if username already exists
         elif len(list(rows)) == 1:
@@ -89,6 +88,11 @@ def register():
         if not password or not confirmation:
             valid = False
             flash("Please provide password.", "danger")
+
+        # Ensure password length is greater than min requirement
+        elif len(password) < 8:
+            valid = False
+            flash("Password must be at least 8 characters.", "danger")
 
         # Ensure passwards are matched
         if password != confirmation:
@@ -101,7 +105,7 @@ def register():
             hash = generate_password_hash(password)
 
             # Insert the new user into database
-            db.execute("INSERT INTO users (name, username, hash) VALUES (?, ?, ?)", (name, username, hash))
+            db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash))
 
             # Save (commit) the changes
             db.commit()
@@ -110,7 +114,7 @@ def register():
             flash("Succesfully registered. Welcome to the addi family!", "success")
 
             # Redirect user to login page
-            return redirect("/login")
+            return redirect("/")
 
         else:
             # Stay on register page
@@ -121,9 +125,9 @@ def register():
         return render_template("register.html")
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def login():
-    """Log user in"""
+    """Sign user in"""
 
     # Configure to use SQLite database
     db = get_db()
@@ -135,7 +139,7 @@ def login():
         valid = True
 
         # Get data from the form
-        username = request.form.get("username").upper()
+        username = request.form.get("username")
         password = request.form.get("password")
 
         # Ensure username was submitted
@@ -150,7 +154,6 @@ def login():
 
         # Query database for username
         else:
-            # username = username.upper()
             rows = db.execute("SELECT * FROM users WHERE username = ?", (username,))
             rows = list(rows)
 
@@ -163,29 +166,28 @@ def login():
         if valid == True:
             # Remember which user has logged in
             session["user_id"] = rows[0]["id"]
-            session["user_name"] = rows[0]['name']
             session["user_username"] = rows[0]['username']
 
             # Redirect user to workout calendar
             return redirect("/add")
 
         else:
-            return redirect("/login")
+            return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
-        return render_template("login.html")
+        return render_template("signin.html")
 
 
-@app.route("/logout")
+@app.route("/signout")
 def logout():
-    """Log user out"""
+    """Sign user out"""
 
     # Forget any user_id
     session.clear()
 
     # Redirect user to login form
-    return redirect("/login")
+    return redirect("/")
 
 
 @app.route("/add", methods=["GET", "POST"])
@@ -245,10 +247,10 @@ def add():
         return render_template("add.html", titles=titles, instructors=instructors)
 
 
-@app.route("/viewlog")
-@app.route("/viewlog/<int:year>")
+@app.route("/log")
+@app.route("/log/<int:year>")
 @login_required
-def viewlog(year=None):
+def log(year=None):
     """View workout log"""
 
     # Get current year
@@ -259,10 +261,10 @@ def viewlog(year=None):
     # Configure to use SQLite database
     db = get_db()
     workouts = db.execute("SELECT * FROM workouts WHERE user_id = ? AND strftime('%Y', date) = ? ORDER BY date DESC", (session["user_id"], str(year)))
-    return render_template("viewlog.html", workouts=workouts, year=year)
+    return render_template("log.html", workouts=workouts, year=year)
 
 
-@app.route("/")
+@app.route("/calendar")
 @login_required
 def calendar():
     """View workout calendar"""
@@ -319,32 +321,49 @@ def profile():
     if request.method == "POST":
 
         # Get data from the form
-        name = request.form.get("name")
+        username = request.form.get("username")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
         if not password or not confirmation:
-            # Check if no change to name
-            if not name or name == session['user_name']:
+            # Check if no change to username
+            if not username or username == session['user_username']:
                 flash("No update", "danger")
 
             else:
-                # Update name
-                db.execute("UPDATE users SET name = ? WHERE id = ?", (name, session["user_id"]))
+                # Query database for username
+                rows = db.execute("SELECT * FROM users WHERE username = ?", (username,))
 
-                # Save (commit) the changes
-                db.commit()
+                # Check if username length is greater than min requirement
+                if len(username) < 6:
+                    flash("Username must be at least 6 characters.", "danger")
 
-                # Update user's name
-                flash("Name succesfully updated.", "success")
+                # Check if username already exists
+                elif len(list(rows)) == 1:
+                    flash("Username already exists. Please choose a new one.", "danger")
 
-                # Update session name
-                session['user_name'] = name
+                else:
+                    # Update username
+                    db.execute("UPDATE users SET username = ? WHERE id = ?", (username, session["user_id"]))
+
+                    # Save (commit) the changes
+                    db.commit()
+
+                    # Update user's name
+                    flash("Username succesfully updated.", "success")
+
+                    # Update session name
+                    session['user_username'] = username
 
         # Update pwd
-        elif not name or name == session['user_name']:
+        elif not username or username == session['user_username']:
+
+            # Ensure password length is greater than min requirement
+            if len(password) < 8:
+                flash("Password must be at least 8 characters.", "danger")
+
             # Ensure passwards are matched
-            if password != confirmation:
+            elif password != confirmation:
                 flash("Passwords do not match. Please try again", "danger")
 
             else:

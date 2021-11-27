@@ -5,44 +5,55 @@
 {% endblock %}
 
 {% block image %}
-    <img src="/static/images/jump.jpg" alt="image-jump" class="img-fluid mx-auto d-block" width="100%">
+    <img src="/static/images/jump.jpg" alt="image-jump" class="img-fluid mx-auto d-block" width="90%">
 {% endblock %}
 
 {% block content %}
-    <form action="/register" method="post">
-        <h1 class="green">Register</h1>
-        <p>Be part of the addi family</p>
 
-        <hr>
+    <h1 class="green">Register</h1>
+    <p>Be part of the addi family</p>
+
+    <hr>
+
+    <form action="/register" method="post">
 
         <!-- Username -->
-        <div class="mb-3 row justify-content-md-center">
-            <div class="col-sm-7">
-                <input class="form-control" name="username" placeholder="Username" type="text" autocomplete="off">
-            </div>
-        </div>
-        <!-- Name -->
-        <div class="mb-3 row justify-content-md-center">
-            <div class="col-sm-7">
-                <input class="form-control" name="name" placeholder="Name" type="text" autocomplete="off" autofocus>
-            </div>
-        </div>
-        <!-- Password -->
-        <div class="mb-3 row justify-content-md-center">
-            <div class="col-sm-7">
-                <input class="form-control" name="password" placeholder="Password 6+ characters" type="password" autocomplete="off" minlength="6">
+        <div class="mb-3">
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
+                    <input class="form-control" name="username" placeholder="Username" type="text" autocomplete="off" minlength="6" required>
+                </div>
+                <div class="col-sm-1 form-icon">
+                    <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" title="minimum 6 characters"></i>
+                </div>
             </div>
         </div>
         <!-- Password -->
-        <div class="mb-3 row justify-content-md-center">
-            <div class="col-sm-7">
-                <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password" autocomplete="off" minlength="6">
+        <div class="mb-3">
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
+                    <input class="form-control" name="password" placeholder="Password" type="password" autocomplete="off" minlength="8" required>
+                </div>
+                <div class="col-sm-1 form-icon">
+                    <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" title="minimum 8 characters"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Confirm password -->
+        <div class="mb-3">
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
+                    <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password" autocomplete="off" minlength="8" required>
+                </div>
+                <div class="col-sm-1 form-icon">
+
+                </div>
             </div>
         </div>
 
         <!-- Button -->
         <div class="mb-3">
-            <div class="d-grid gap-2 col-7 mx-auto">
+            <div class="d-grid gap-2 col-3 mx-auto">
                 <button class="btn btn-primary" type="submit">Register</button>
             </div>
         </div>

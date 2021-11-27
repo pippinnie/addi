@@ -1,0 +1,38 @@
+{% extends "2col_layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block image %}
+    <img src="/static/images/dance.jpg" alt="image-dance" class="img-fluid mx-auto d-block" width="50%">
+{% endblock %}
+
+{% block content %}
+    <form action="/" method="post">
+        <h1 class="green">Sign In</h1>
+        <p>Enjoy addi's workout log</p>
+
+        <hr>
+
+        <!-- Username -->
+        <div class="mb-3 justify-content-md-center">
+            <div class="col-sm-6 mx-auto">
+                <input class="form-control" name="username" placeholder="Username" type="text" autocomplete="off" minlength="6" required autofocus>
+            </div>
+        </div>
+        <!-- Password -->
+        <div class="mb-3 justify-content-md-center">
+            <div class="col-sm-6 mx-auto">
+                <input class="form-control" name="password" placeholder="Password" type="password" minlength="8" autocomplete="off">
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="mb-3">
+            <div class="d-grid gap-2 col-3 mx-auto">
+                <button class="btn btn-primary" type="submit">Sign In</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

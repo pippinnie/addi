@@ -13,6 +13,8 @@ nav .navbar-brand {
 nav {
     font-weight: 500;
     font-size: large;
+    padding: 10px 20px;
+    z-index: 1000;
 }
 
 /* Links */
@@ -29,6 +31,20 @@ nav {
 }
 nav .active {
     color: #7d9999;
+}
+
+/* Dropdown menu */
+.dropdown-item {
+    color: #AC090A;
+    background-color: transparent;
+}
+.dropdown-item:hover {
+    color: #7d9999;
+    background-color: #f8fafa;
+}
+.dropdown-item:focus, .dropdown-item:active {
+    color: #7d9999;
+    background-color: transparent !important;
 }
 
 /* Colors for workout types */
@@ -88,9 +104,16 @@ footer {
 }
 
 /* Click on buttons */
-.btn-primary:active, .btn-primary:focus, .btn-primary:active:focus {
+.btn-primary:active, .btn-primary:active:focus {
     color: #fff;
     background-color: #7d9999;
+    border-color: #7d9999;
+    box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: #64090A;
     border-color: #7d9999;
     box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
 }
@@ -133,12 +156,10 @@ input:focus-visible {
 
 } */
 
-/* Style the header of user's name */
-.header {
-    padding: 10px 16px;
+/* Style user's name*/
+.usersName {
     background: #555;
     color: #f1f1f1;
-    z-index: 1000;
     font-size: 1.25rem;
 }
 
@@ -148,7 +169,7 @@ input:focus-visible {
     font-size: 1.5rem;
 }
 
-/* The sticky class is added to the header with JS when it reaches its scroll position */
+/* The class is added to the header with JS when it reaches its scroll position */
 .sticky {
     position: fixed;
     top: 0;
@@ -170,7 +191,7 @@ table.fixed td {
 
 /* Table */
 .row>* {
-    max-width: 80%;
+    max-width: 100%;
 }
 
 /* Table col width */
@@ -198,4 +219,11 @@ table.fixed td {
     border: 0 !important;
 }
 
+/* Icons on form */
+.form-icon {
+    line-height: 38px;
+}
+.floating-form-icon {
+    line-height: 58px;
+}
 
