@@ -34,17 +34,17 @@ nav .active {
 }
 
 /* Dropdown menu */
-.dropdown-item {
-    color: #AC090A;
-    background-color: transparent;
+.dropdown-menu-dark .dropdown-item {
+    color: #a33535;
+    font-weight: 500;
 }
-.dropdown-item:hover {
+.dropdown-menu-dark .dropdown-item:hover  {
     color: #7d9999;
-    background-color: #f8fafa;
+    background-color: #343a40;
 }
-.dropdown-item:focus, .dropdown-item:active {
+.dropdown-menu-dark .dropdown-item:focus, .dropdown-item:active {
     color: #7d9999;
-    background-color: transparent !important;
+    background-color: #343a40;
 }
 
 /* Colors for workout types */

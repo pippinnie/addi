@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         today = yyyy + '-' + mm + '-' + dd;
-        console.log(today);
+        // console.log(today);
         if (document.getElementById("date")) {
             document.getElementById("date").value = today;
         }

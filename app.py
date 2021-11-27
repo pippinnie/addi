@@ -114,7 +114,7 @@ def register():
             flash("Succesfully registered. Welcome to the addi family!", "success")
 
             # Redirect user to login page
-            return redirect("/")
+            return redirect("/signin")
 
         else:
             # Stay on register page
@@ -125,9 +125,13 @@ def register():
         return render_template("register.html")
 
 
-@app.route("/", methods=["GET", "POST"])
-def login():
+@app.route("/signin", methods=["GET", "POST"])
+def signin():
     """Sign user in"""
+
+    # If user already signed in, redirect to index page
+    if session.get("user_id"):
+        return redirect("/")
 
     # Configure to use SQLite database
     db = get_db()
@@ -172,7 +176,7 @@ def login():
             return redirect("/add")
 
         else:
-            return redirect("/")
+            return redirect("/signin")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -180,14 +184,14 @@ def login():
 
 
 @app.route("/signout")
-def logout():
+def signout():
     """Sign user out"""
 
     # Forget any user_id
     session.clear()
 
     # Redirect user to login form
-    return redirect("/")
+    return redirect("/signin")
 
 
 @app.route("/add", methods=["GET", "POST"])
@@ -226,6 +230,7 @@ def add():
     # user reached via GET
     else:
         # Query database for titles and instructors from workouts table with the user id
+        # Showing those with highest records first and the rest in descending order
         db_titles = db.execute("SELECT title FROM workouts WHERE user_id = ? GROUP BY title ORDER BY COUNT (title) DESC", (session["user_id"],))
         db_instructors = db.execute("SELECT instructor FROM workouts WHERE user_id = ? GROUP BY instructor ORDER BY COUNT (instructor)", (session["user_id"],))
 
@@ -240,9 +245,6 @@ def add():
 
         for instructor in db_instructors:
             instructors.append(instructor['instructor'])
-
-        print(titles)
-        print(instructors)
 
         return render_template("add.html", titles=titles, instructors=instructors)
 
@@ -264,6 +266,7 @@ def log(year=None):
     return render_template("log.html", workouts=workouts, year=year)
 
 
+@app.route("/")
 @app.route("/calendar")
 @login_required
 def calendar():

@@ -27,11 +27,6 @@
 
         <link href="/static/styles.css" rel="stylesheet">
 
-        <!-- Google fonts Laila -->
-        <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;700&display=swap" rel="stylesheet"> -->
-
         <!-- Google fonts Karla -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,8 +72,9 @@
                                     <a class="nav-link dropdown-toggle {{ 'active' if request.endpoint == 'profile'}}" href="/profile" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Profile
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="/profile">Update</a></li>
+                                        <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="/signout">Sign out</a></li>
                                     </ul>
                                 </li>
@@ -86,7 +82,7 @@
 
                         {% else %}
                             <ul class="nav justify-content-end">
-                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'signin'}}" href="/">Sign In</a></li>
+                                <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'signin'}}" href="/signin">Sign In</a></li>
                                 <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'register'}}}}" href="/register">Register</a></li>
                             </ul>
                         {% endif %}
