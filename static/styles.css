@@ -35,7 +35,7 @@ nav .active {
 
 /* Dropdown menu */
 .dropdown-menu-dark .dropdown-item {
-    color: #a33535;
+    color: #ee3636;
     font-weight: 500;
 }
 .dropdown-menu-dark .dropdown-item:hover  {
@@ -115,7 +115,7 @@ footer {
     color: #fff;
     background-color: #64090A;
     border-color: #7d9999;
-    box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 25%);
+    box-shadow: 0 0 0 0.25rem rgb(125 153 153 / 0%);
 }
 
 /* Focus on forms */
